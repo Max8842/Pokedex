@@ -10,3 +10,4 @@
 - Pokedex Projekt Erstellen
 - Diesen Ordner in das Projekt hochladen
 - "tom.lausmann@gmail.com" als Collaboratuer einladen
+  number guessing game
