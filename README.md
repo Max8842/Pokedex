@@ -31,8 +31,7 @@ Die Dokumentation soll anderne Leuten helfen, dein Spiel zu verstehen und falls
 sie interesse haben, dein spiel mit- bzw. weiterzuentwickeln.
 
 ## Aufgabe 2
-Erstelle eine kleines *Wireframe* mit `html` und `css`, welches zeigen soll,
-wie das Pokedex spaeter aussehen *koennte*.
+
 
 Anforderungen an das Wireframe:
 
@@ -40,7 +39,8 @@ Anforderungen an das Wireframe:
 - In den Kacheln sollen folgende Dinge sichtbar sein:
     - Name des Pokemon
     - Sprite (Bild) des Pokemons
-    - Typ des Pokemons
+    - Typ(en) des Pokemons
+    - "Pagination" also Pokemon auf mehreen Seiten aufteilens
 
 Designentscheidungen:
 - Wie gross soll die Kachel sein?
