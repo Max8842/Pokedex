@@ -19,7 +19,7 @@
 
 ### Aufgabe 1
 Erstelle eine README.md in dem `number-guessing-game` ordner und Erstelle
-eine Dokumentation.
+eine Dokumentation. Erstelle die Dokumentation mit `Markdown`.
 
 Sie Sollte Beinhalten:
 
@@ -50,4 +50,7 @@ Designentscheidungen:
 **Wichtig**: Das Ziel ist nicht, so schnell wie moeglich fertig zu werden. 
 Eine loesung, hinter der du selber stehen kannst ist viel wichtiger. Lasse dir
 Zeit und hinterfrage dich selber, ob es eine gute Loesung ist.
+
+**Auch Wichtig**: Wenn du bestimmte dinge nicht kennst: **durchsuche das Internet**,
+experimentiere und probier dich aus.
 
