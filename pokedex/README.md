@@ -1,17 +1,15 @@
 # Pokedex
 
 ## Aufgaben / TODOs:
-- [ ] Mache mit CSS die Ramen um den Entwicklungslinien (Klasse: .evolution-line) *rund*
-- [ ] Ersetze die Liste der Typen bei jedem Pokemon mit einer *ungeordneten liste* `<ul>`.
-- [ ] Ersetze die grauen Boxen der Pokemon mit den Entsprechenden Bildern (links zu den Bildern siehe unten). Benutze das `<img>` tag dafuer.
+- [x] Mache mit CSS die Ramen um den Entwicklungslinien (Klasse: .evolution-line) *rund*
+- [x] Ersetze die Liste der Typen bei jedem Pokemon mit einer *ungeordneten liste* `<ul>`.
+- [x] Ersetze die grauen Boxen der Pokemon mit den Sprints der Pokemon
 
-## Sprites (Bilder) fuer die Pokemon
+- [x] Mache die Namen der Pokemon *fett*
+- [x] Suche dir Farben aus und packe sie auf die elemente die du willst.
 
-- [https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png]
-- [https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png]
-- [https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png]
-- [https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png]
-- [https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png]
-- [https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png]
-- ...
+- [x] Textfarbe (`color`) von den Pokemon namen auf die Farbe mit der Variable `--cordovan`
+- [x] Hintergroundfarbe (`background-color`) von den Sprites auf die Farbe `--cinereous`
 
+- [ ] Wie funktionieren Links in HTML?
+- [ ] Mach die Gen ... elemente zu Links, die auf die URL `http://google.de` zeigen.
