@@ -54,3 +54,94 @@ Zeit und hinterfrage dich selber, ob es eine gute Loesung ist.
 **Auch Wichtig**: Wenn du bestimmte dinge nicht kennst: **durchsuche das Internet**,
 experimentiere und probier dich aus.
 
+
+
+
+
+
+# Tag 4
+Rechercheziele:
+Lerne und Verstehe die Grundkonzepte von HTML
+
+[https://developer.mozilla.org/de/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata]
+
+Bereite HIER am ende der Datei eine Uebersicht mit **Codebeispielen** ueber folgende Themen auf:
+- Wofuer steht HTML?
+- Was ist ein HTML Tag? 
+  - Wie sieht ein HTML Tag aus? 
+  - Was sind leere HTML tags?
+  - Was sind Attribute?
+- Wie ist ein HTML Dokument Aufgebaut? Welche Relevanz haben die einzelnen Bestandteile?
+
+- Welche HTML tags im Head gibt es?
+- Welche HTML tags im Body gibt es? (7 Beispiele mit **Codebeispielen**)
+
+
+1. HTML ist für die struktur und ihalt da
+
+2. ein code element das den anfang und ende eines html elements makiert
+
+3. Spitze klammern <>
+
+4. Elemente die keinen inhalt zwischen den den spitzen klammern haben 
+
+5. funktionälität unnd aussehen eines html element definieren
+
+6. besteht aus tags wie <html>, <head> , <body>. sie bilden die grundstruktur html umschließt das ganze dokument, head entält metadaten und infos für den browser... und body für den sichtbaren inhalt
+
+7.  title meta link style und script
+
+8. <h1-h6> <p> <ul> <li> <img> <src> <alt> <table> <strong>
+
+<h1>Pokedex</h1> sorgt dafür das es größer wird
+
+<ul>
+  <li>Water</li>
+</ul>       sorgt dafür das es gelistet wird
+
+<img src="bild Link"> fügem das bild in die seite ein und geben den weg um bild an
+
+<table>   macht eine tabelle
+
+<strong> macht das die schrift fett wird   
+
+
+Erstelle mir ein HTML element: Ein Absatz mit dem Inhalt "Ich bin Max" und dem attribut "class" mit dem wert "beschreibung".
+
+<p class="beschreibung"> ich bin Max </p>
+
+
+
+
+
+Erstelle mir eine Tabelle, mit 2 Spalten.
+Links steht der Name der Information und Rechts der Information.
+Die Tabelle soll die Informationen: Name, Alter, Schule, Hobbys
+ 
+<html>
+<head>
+  <title>Tabelle</table>
+  <head>
+  <body>
+  <table border="1">
+  <tr>
+  <th>Name</th>
+  <th>Alter</th>
+  <th>Schule></th>
+  <th>Hobby</th>
+  </tr>
+  <tr>
+  <td>Max</td>
+  <td>15</td>
+  <td>Hans grade schule</td>
+  <td>keine</td>
+  </tr>
+  </table>
+  </html>
+  </body>
+
+
+
+- Fuege ein Bild eines Pokemons hinzu. (Dein Lieblingspokemon, oder irgendein, wenn du keines hast)
+- Erstelle geordnete Liste die deinen Arbeitesweg von Tuer zu Tuer beschreibt, also welche Verkehrsmittel benutzt du,
+in welcher Reihenfolge und welche Stationen

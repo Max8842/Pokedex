@@ -1,0 +1,15 @@
+h1{
+color: green;
+}
+body,html{
+background-color: rgb(255, 0, 0);
+}
+.Arbeitsweg{
+ color: brown;   
+}
+.Profilfoto{
+    color: aqua;
+}
+#steckbrief{
+    color: blueviolet;
+}
