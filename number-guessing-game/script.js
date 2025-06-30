@@ -1,4 +1,4 @@
-let NumberToGuess = Math.round(Math.random() * 100000);
+let NumberToGuess = Math.round(Math.random() * 100);
 let tries = 0;
 let previousGuesses = [];
 
