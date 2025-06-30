@@ -162,3 +162,17 @@ flexbox: dient dazu layouts einfach flexibel und dynmaisch zu gestalten
 input: mit input kann man daten eingeben wie z.b text zahlen passwörter usw
 
 checked überptüft of ein checkox/raido input aktiviert ist
+       
+       
+       
+// Zeige das Ergebnis nicht mehr nur in der Konsole, sondern auf der Internet-Seite.
+
+        // 1. Erstelle ein <div> HTML element mit einer ID "ergebnis"
+        // 2. Hole dir das HTML Element mit JavaScript hier mit der funktion `document.getElementById`
+        //    in schreibe es in die Variable "ergebnis"
+         // 3. Setze den inhalt des div Elements indem du das Feld `ergebnis.innerHtml` entsprechend setzt.
+        //    Benutze dafür `Template Strings`
+        // Erstelle 3 CSS klassen, die jeweils die Hintergrundfarbe des Textes anders setzen (rot, gelb, greun, ... egal)
+        // Wähle zufällig eine dieser Klassen aus.
+        // Erstelle ein HTML Element mit dem Template Strings, dass die Klasse enthält und das Ergebnis
+        // Schreibe das HTML element mit ergenis.innerHTML in das ergebnis element.
