@@ -139,9 +139,26 @@ Die Tabelle soll die Informationen: Name, Alter, Schule, Hobbys
   </table>
   </html>
   </body>
+  <>
 
 
 
 - Fuege ein Bild eines Pokemons hinzu. (Dein Lieblingspokemon, oder irgendein, wenn du keines hast)
 - Erstelle geordnete Liste die deinen Arbeitesweg von Tuer zu Tuer beschreibt, also welche Verkehrsmittel benutzt du,
 in welcher Reihenfolge und welche Stationen
+
+display: es bestimmt wie ein html element im browser angezeigt wird und je nach wort wird es beeinflusst wie das element auf andere elemente reagiert
+
+font weight: schrift stärke oder dicke eines textes
+
+text allign: bestimmt  die asrichtung dex textes 
+
+flex wrap: sorgt dafür dass flexbox elemente nicht gezwungen werden in eine einzigen zelle zu bleiben
+
+~ wird verwendet um elemente  auszuwählen die auf der selben ebene im DOM stehen
+
+flexbox: dient dazu layouts einfach flexibel und dynmaisch zu gestalten
+
+input: mit input kann man daten eingeben wie z.b text zahlen passwörter usw
+
+checked überptüft of ein checkox/raido input aktiviert ist
