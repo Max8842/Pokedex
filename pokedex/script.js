@@ -1,19 +1,58 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     document.getElementById("load-more").addEventListener("click", function() {
-        var zahl1 = Number(document.getElementById("zahl1").value);
-        var zahl2 = Number(document.getElementById("zahl2").value);
-        
-        var summe = zahl1 + zahl2; 
+        var pokemons = document.getElementById("pokemons")
+       const Html = 
+        `<div class="evolution-line">
+        <div class="pokemon">
+                    <div class="pokemon-sprite"><img class="fit-picture"
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+                    </div>
+                    <div>
+                        <div class="pokemon-name">
+                            <h2><b>Bulbasur</b></h2>
+                        </div>
+                        <ul class="pokemon-types">
+                            <li>Grass</li>
+                            <li>Poison</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pokemon">
+                    <div>
+                        <div class="pokemon-sprite"><img class="fit-picture"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pokemon-name">
+                            <h2>Ivysaur</h2>
+                        </div>
+                        <ul class="pokemon-types">
+                            <li>Grass</li>
+                            <li>Poison</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pokemon">
+                    <div>
+                        <div class="pokemon-sprite"><img class="fit-picture"
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="pokemon-name">
+                            <h2>Venusaur</h2>
+                        </div>
+                        <ul class="pokemon-types">
+                            <li>Grass</li>
+                            <li>Poison</li>
+                        </ul>
 
+                    </div>
+                   </div>
+                   </div>
+ `;  
+       pokemons.innerHTML += Html
         
-        var ergebnis = document.getElementById("ergebnis");       
-
-       const klassen = [`red`, `green`, `yellow`];
-       const zufallsKlasse = klassen[Math.floor(Math.random() * klassen.length)];
-       const Html = `<div class="${zufallsKlasse}">Ergebnis: ${summe}</div>`;
-       const foo = `
-       
-       `;
-       ergebnis.innerHTML += Html
     });
 });
