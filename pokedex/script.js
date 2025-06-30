@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    document.getElementById("load-more").addEventListener("click", function() {
-        var pokemons = document.getElementById("pokemons")
-       const Html = 
-        `<div class="evolution-line">
+document.addEventListener("DOMContentLoaded", function (event) {
+    document.getElementById("load-more").addEventListener("click", function () {
+        const container = document.getElementById("pokemons");
+        
+        for (let i = 0; i < 4; i++) {
+            var nextEvolutionLine = `<div class="evolution-line">
         <div class="pokemon">
                     <div class="pokemon-sprite"><img class="fit-picture"
                             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
@@ -51,8 +52,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                     </div>
                    </div>
                    </div>
- `;  
-       pokemons.innerHTML += Html
-        
+                   
+                  
+ `;
+            container.innerHTML += nextEvolutionLine;
+        }
+
     });
 });
