@@ -1,64 +1,72 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     loadMore();
-    
+
     document.getElementById("load-more").addEventListener("click", function () {
         loadMore().catch(console.error);
     });
+
+    fetchEvolutionChain(6).then(links => console.log(links));
 });
 
-var pokemonIndex = 1;
+async function fetchEvolutionChain(evolutionLineId) {
+    var evolutionChain = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${evolutionLineId}`).then(response => response.json());
+
+    var chain = evolutionChain.chain;
+    var pokemonLinks = [chain.species.url];
+
+    while (chain.evolves_to.length > 0) {
+        chain = chain.evolves_to[0];
+        pokemonLinks.push(chain.species.url);
+    }
+
+    return pokemonLinks;
+}
+
+async function resolvePokemon(speciesUrl) {
+    var species = await fetch(speciesUrl).then(response => response.json());
+    var pokemonUrl = species.varieties[0].pokemon.url;
+
+    var pokemon = await fetch(pokemonUrl).then(response => response.json());
+
+    return {
+        name: pokemon.name,
+        sprite: pokemon.sprites.front_default,
+    };
+}
+
+function getPokemon({name, sprite}) {
+    return  `<div class="pokemon">
+                    <div class="pokemon-sprite"><img class="fit-picture"
+                            src="${sprite}">
+                    </div>
+                    <div>
+                        <div class="pokemon-name">
+                            <h2><b>${name}</b></h2>
+                        </div>
+                        <ul class="pokemon-types">
+                            <li>Grass</li>
+                            <li>Poison</li>
+                        </ul>
+                    </div>
+                </div>`;
+}
+
+var evolutionLineIndex = 1;
 async function loadMore() {
     const container = document.getElementById("pokemons");
     for (let i = 0; i < 4; i++) {
-        var nextEvolutionLine = `
-            <div class="evolution-line">
-                <div class="pokemon">
-                    <div class="pokemon-sprite"><img class="fit-picture"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex++}.png">
-                    </div>
-                    <div>
-                        <div class="pokemon-name">
-                            <h2><b>Bulbasur</b></h2>
-                        </div>
-                        <ul class="pokemon-types">
-                            <li>Grass</li>
-                            <li>Poison</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pokemon">
-                    <div>
-                        <div class="pokemon-sprite"><img class="fit-picture"
-                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex++}.png">
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pokemon-name">
-                            <h2>Ivysaur</h2>
-                        </div>
-                        <ul class="pokemon-types">
-                            <li>Grass</li>
-                            <li>Poison</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="pokemon">
-                    <div>
-                        <div class="pokemon-sprite"><img class="fit-picture"
-                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex++}.png">
-                        </div>
-                    </div>
-                    <div>
-                        <div class="pokemon-name">
-                            <h2>Venusaur</h2>
-                        </div>
-                        <ul class="pokemon-types">
-                            <li>Grass</li>
-                            <li>Poison</li>
-                        </ul>
+        var evolutionLine = await fetchEvolutionChain(evolutionLineIndex++);
+        
+        var pokemonHtml = "";
+        for (let j = 0; j < evolutionLine.length; j++) {
+            var pokemon = await resolvePokemon(evolutionLine[j]);
+            pokemonHtml += getPokemon(pokemon);
+        }
 
-                    </div>
-                </div>
+
+        var nextEvolutionLine = `
+           <div class="evolution-line">
+            ${pokemonHtml}
             </div>
             `;
         container.innerHTML += nextEvolutionLine;
