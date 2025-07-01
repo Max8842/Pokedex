@@ -176,3 +176,4 @@ checked überptüft of ein checkox/raido input aktiviert ist
         // Wähle zufällig eine dieser Klassen aus.
         // Erstelle ein HTML Element mit dem Template Strings, dass die Klasse enthält und das Ergebnis
         // Schreibe das HTML element mit ergenis.innerHTML in das ergebnis element.
+ 

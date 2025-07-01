@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (event) {
+    loadMore();
+    
     document.getElementById("load-more").addEventListener("click", function () {
         loadMore().catch(console.error);
     });
