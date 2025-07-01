@@ -29,12 +29,13 @@ async function resolvePokemon(speciesUrl) {
     var pokemon = await fetch(pokemonUrl).then(response => response.json());
 
     return {
+        type: pokemon.types.map(t => t.type.name),
         name: pokemon.name,
         sprite: pokemon.sprites.front_default,
     };
 }
 
-function getPokemon({name, sprite}) {
+function getPokemon({name, type, sprite}) {
     return  `<div class="pokemon">
                     <div class="pokemon-sprite"><img class="fit-picture"
                             src="${sprite}">
@@ -44,8 +45,7 @@ function getPokemon({name, sprite}) {
                             <h2><b>${name}</b></h2>
                         </div>
                         <ul class="pokemon-types">
-                            <li>Grass</li>
-                            <li>Poison</li>
+                            ${type.map(t => `<li>${t}</li>`).join("")}
                         </ul>
                     </div>
                 </div>`;
