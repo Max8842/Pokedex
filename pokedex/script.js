@@ -1,12 +1,18 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     document.getElementById("load-more").addEventListener("click", function () {
-        const container = document.getElementById("pokemons");
-        
-        for (let i = 0; i < 4; i++) {
-            var nextEvolutionLine = `<div class="evolution-line">
-        <div class="pokemon">
+        loadMore().catch(console.error);
+    });
+});
+
+var pokemonIndex = 1;
+async function loadMore() {
+    const container = document.getElementById("pokemons");
+    for (let i = 0; i < 4; i++) {
+        var nextEvolutionLine = `
+            <div class="evolution-line">
+                <div class="pokemon">
                     <div class="pokemon-sprite"><img class="fit-picture"
-                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png">
+                            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex++}.png">
                     </div>
                     <div>
                         <div class="pokemon-name">
@@ -21,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 <div class="pokemon">
                     <div>
                         <div class="pokemon-sprite"><img class="fit-picture"
-                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png">
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex++}.png">
                         </div>
                     </div>
                     <div>
@@ -37,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 <div class="pokemon">
                     <div>
                         <div class="pokemon-sprite"><img class="fit-picture"
-                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png">
+                                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex++}.png">
                         </div>
                     </div>
                     <div>
@@ -50,13 +56,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         </ul>
 
                     </div>
-                   </div>
-                   </div>
-                   
-                  
- `;
-            container.innerHTML += nextEvolutionLine;
-        }
-
-    });
-});
+                </div>
+            </div>
+            `;
+        container.innerHTML += nextEvolutionLine;
+    }
+}
