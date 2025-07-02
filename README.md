@@ -177,9 +177,9 @@ checked überptüft of ein checkox/raido input aktiviert ist
  
 # Tag 9
 - Richte deine IDE ein:
- - Lade dir VS Code herrunter
- - Installieren Git
- - Checke dein Projekt aus
+ - Lade dir VS Code herrunter [https://code.visualstudio.com]
+ - Installieren Git [https://git-scm.com/downloads]
+ - Checke dein Projekt aus [file:///C:/Users/tomla/Desktop/Pokedex/pokedex/index.html]
 
 - Steckbrief erweitern (Fangort, Pokedex Eintrag, ...)
 - CSS Hinzufuegen
