@@ -13,3 +13,23 @@
 
 - [ ] Wie funktionieren Links in HTML?
 - [ ] Mach die Gen ... elemente zu Links, die auf die URL `http://google.de` zeigen.
+
+## Tag 8
+- Beschreibe die neuen funktionen, die du gestern beim auflisten der typen benutzt hast (map und join)
+- Wenn man auf eine bestimmte Generation unten klickt, soll der Bereich mit den Pokemon und entwicklungslinien
+  *geleert* werden und die Pokemon ab der gewaehlten generation gezeigt werden.
+
+  map macht ein array in ein neues array nur mit den typ namen
+
+  t ist ein platz halter  für jedes einzelene elemet in array
+
+  join macht  aus ein array von strings ein einzelnen und " "ist der trenner zwischen den elementen
+
+  ```js
+  var types = ["grass", "poison"];
+
+  var liste = type.map(t => `<li>${t}</li>`);
+ 
+  var liste = [grass , poison]
+ 
+  ```

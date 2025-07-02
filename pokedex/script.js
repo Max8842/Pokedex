@@ -45,7 +45,7 @@ function getPokemon({name, type, sprite}) {
                             <h2><b>${name}</b></h2>
                         </div>
                         <ul class="pokemon-types">
-                            ${type.map(t => `<li>${t}</li>`).join("")}
+                            ${type.map(t => `<li>${t}</li>`).join("") /* Was macht die join funktion? */}
                         </ul>
                     </div>
                 </div>`;

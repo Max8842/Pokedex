@@ -162,9 +162,7 @@ flexbox: dient dazu layouts einfach flexibel und dynmaisch zu gestalten
 input: mit input kann man daten eingeben wie z.b text zahlen passwörter usw
 
 checked überptüft of ein checkox/raido input aktiviert ist
-       
-       
-       
+
 // Zeige das Ergebnis nicht mehr nur in der Konsole, sondern auf der Internet-Seite.
 
         // 1. Erstelle ein <div> HTML element mit einer ID "ergebnis"
@@ -177,3 +175,14 @@ checked überptüft of ein checkox/raido input aktiviert ist
         // Erstelle ein HTML Element mit dem Template Strings, dass die Klasse enthält und das Ergebnis
         // Schreibe das HTML element mit ergenis.innerHTML in das ergebnis element.
  
+# Tag 9
+- Richte deine IDE ein:
+ - Lade dir VS Code herrunter
+ - Installieren Git
+ - Checke dein Projekt aus
+
+- Steckbrief erweitern (Fangort, Pokedex Eintrag, ...)
+- CSS Hinzufuegen
+ - Stats als Balken anzeigen (1 - 255), Beispiel: Wenn pokemon 127 Initialive hat, ist der Balken zu 50% gefuellt.
+- Erstelle den Steckbrief fuer die ersten 9 Pokemon (Bisasam - Turtok)
+- Verlinke den Steckbrief von der Uebersichtsseite vom entsprechenden Pokemon
