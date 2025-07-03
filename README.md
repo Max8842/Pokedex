@@ -13,7 +13,7 @@
   number guessing game
 
 - Number Guessing Game Programmiert
-- Kleiner Erweiterung hinzugefueht.
+- Kleiner Erweiterung hinzugefügt.
 
 ## Tag 2 - Dokumentation "Number-Guessing-Game" & Erste Schritte Pokedex
 
