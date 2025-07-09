@@ -1,52 +1,122 @@
 <!DOCTYPE html>
-<html>
-<title>Pokedex</title>
-<link rel="stylesheet" href="./style.css">
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokedex – Evolution Chains</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
 
-<!-- Robot Font laden -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
+    h1 {
+      text-align: center;
+      color: #1976d2;
+    }
 
+    .gen-buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .gen-btn {
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin: 0 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .gen-btn.active {
+      background: #0f4a8c;
+    }
+
+    #evolution-chains-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .evo-chain-box {
+      background: #e3f6ff;
+      border: 2px solid #7ecbfa;
+      border-radius: 12px;
+      width: calc(25% - 20px);
+      box-sizing: border-box;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .evo-pokemon {
+      margin-bottom: 12px;
+    }
+
+    .evo-pokemon img {
+      width: 96px;
+      height: 96px;
+    }
+
+    .pokemon-name {
+      font-weight: bold;
+      text-transform: capitalize;
+      margin-top: 6px;
+    }
+
+    .types-container {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .type-badge {
+      background: #1976d2;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      text-transform: capitalize;
+    }
+
+    #load-more-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 24px;
+      background: #1976d2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
-    <h1>Pokedex</h1>
-    <div id="pokedex">
-        <div id="pokemons">
-        </div>
-        <div id="load-more">Mehr Anzeigen</div>
-    </div>
-    <div id="genration-selection">
-        <div class="generation"><a href="http://google.de">Gen 1</a> </div>
-        <div class="generation"><a href="http://google.de">Gen 2</a> </div>
-        <div class="generation"><a href="http://google.de">Gen 3</a> </div>
-        <div class="generation"><a href="http://google.de">Gen 4</a> </div>
-        <div class="generation"><a href="http://google.de">Gen 5</a> </div>
-        <div class="generation"><a href="http://google.de">Gen 6</a> </div>
-    </div>
-    </div>
-    <script src="./script.js"></script>
+  <h1>Pokedex – Evolution Chains</h1>
+
+  <div class="gen-buttons">
+    <button class="gen-btn active" data-gen="1">Gen 1</button>
+    <button class="gen-btn" data-gen="2">Gen 2</button>
+    <button class="gen-btn" data-gen="3">Gen 3</button>
+    <button class="gen-btn" data-gen="4">Gen 4</button>
+    <button class="gen-btn" data-gen="5">Gen 5</button>
+    <button class="gen-btn" data-gen="6">Gen 6</button>
+  </div>
+
+  <div id="evolution-chains-container"></div>
+  <button id="load-more-btn">Load More Chains</button>
+
+  <script src="script.js"></script>
 </body>
-
 </html>
+>
 
-
-<!--
-                        <div class="pokemon-container">
-                            <div class="pokemon-card"></div>
-                            <div class="pokemon-card"></div>
-                            <div class="pokemon-card"></div>
-
-                            <input type="checkbox" id="toggle-more" class="toggle-more" />
-
-                            <div class="more-pokemon">
-                                <div class="pokemon-card"></div>
-                                <div class="pokemon-card"></div>
-                                <div class="pokemon-card"></div>
-
-                            </div>
-
-                            <label for="toggle-more" class="load-more-label">Mehr anzeigen</label>
-                            -->

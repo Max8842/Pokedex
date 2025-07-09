@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pokemon Profile</title>
+    <style>
+        body { 
+            background: linear-gradient(135deg,#b3e0ff 0%,#f0f4f8 100%);
+            margin: 0; font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .profile-outer-box {
+            background:#fff; border:2px solid #7ecbfa; border-radius:24px;
+            box-shadow:0 8px 32px #7ecbfa2e,0 2px 8px #0002;
+            max-width:900px; margin:48px auto; padding:40px 32px;
+        }
+        .profile-container {
+            padding:20px 20px 20px 0; max-width:850px; position:relative; min-height:260px;
+        }
+        .pokemon-img {
+            position:absolute; top:20px; right:20px; width:220px; height:220px; object-fit:contain;
+            background:#e3f6ff; border-radius:18px; border:2.5px solid #7ecbfa;
+            box-shadow:0 2px 16px #7ecbfa2e;
+        }
+        h1 {
+            color:#1976d2; margin-top:0; font-size:2.7rem; letter-spacing:2px;
+            text-shadow:0 2px 8px #7ecbfa33;
+        }
+        h3 {
+            color:#42a5f5; margin-bottom:8px; margin-top:28px; font-size:1.35rem;
+        }
+        table {
+            border-collapse:separate; border-spacing:0 8px; width:62%; background:#fff; margin-bottom:18px;
+        }
+        td {
+            padding:7px 12px; font-size:1.08rem;
+        }
+        td:first-child {
+            color:#264653; font-weight:600; width:140px;
+        }
+        ul {
+            margin-top:0; margin-bottom:12px; padding-left:22px;
+        }
+        ul li {
+            margin-bottom:4px; font-size:1.08rem;
+        }
+        .type-badge {
+            background:#1976d2; color:#fff; padding:2px 14px; border-radius:14px; font-weight:600;
+            text-transform: capitalize;
+        }
+        .evo-badge {
+            padding:2px 10px; border-radius:12px; font-weight:600; margin-right:2px;
+            text-transform: capitalize;
+        }
+        .weakness-badge {
+            color:#fff; padding:2px 10px; border-radius:10px; font-weight:600; font-size:1em; margin-right:6px;
+        }
+        progress {
+            height:16px; border-radius:8px; background:#eee; accent-color:#1976d2;
+            vertical-align:middle; width:60%;
+        }
+        .stat-label {
+            display:inline-block; width:70px;
+        }
+        @media (max-width:700px) {
+            .profile-outer-box { padding:10px;}
+            .profile-container { padding:10px 0;}
+            .pokemon-img { position:static; display:block; margin:0 auto 18px; width:160px; height:160px;}
+            table { width:100%;}
+            progress { width:90%;}
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-outer-box" id="profile-box">
+        Loading profile...
+    </div>
+
+    <script>
+        async function fetchJson(url) {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("Network error");
+            return await res.json();
+        }
+
+        function capitalize(s) {
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+
+        function createTypeBadges(types) {
+            return types.map(t => `<span class="type-badge">${capitalize(t.type.name)}</span>`).join('');
+        }
+
+        function createWeaknessBadges(types) {
+            // Simplified example: weaknesses based on type
+            // You can extend with real type chart if needed
+            const weaknessesMap = {
+                electric: {color: '#f7d02c', label: 'Electric'},
+                grass: {color: '#7ac74c', label: 'Grass'},
+                fire: {color: '#ee8130', label: 'Fire'},
+                water: {color: '#6390f0', label: 'Water'},
+                ice: {color: '#96d9d6', label: 'Ice'},
+                fighting: {color: '#c22e28', label: 'Fighting'},
+                poison: {color: '#a33ea1', label: 'Poison'},
+                ground: {color: '#e2bf65', label: 'Ground'},
+                flying: {color: '#a98ff3', label: 'Flying'},
+                psychic: {color: '#f95587', label: 'Psychic'},
+                bug: {color: '#a6b91a', label: 'Bug'},
+                rock: {color: '#b6a136', label: 'Rock'},
+                ghost: {color: '#735797', label: 'Ghost'},
+                dragon: {color: '#6f35fc', label: 'Dragon'},
+                dark: {color: '#705746', label: 'Dark'},
+                steel: {color: '#b7b7ce', label: 'Steel'},
+                fairy: {color: '#d685ad', label: 'Fairy'},
+                normal: {color: '#a8a77a', label: 'Normal'},
+            };
+            return types.map(t => {
+                const weak = weaknessesMap[t.type.name];
+                if (!weak) return '';
+                return `<span class="weakness-badge" style="background:${weak.color}">${weak.label}</span>`;
+            }).join(' ');
+        }
+
+        function createStatsTable(stats) {
+            return stats.map(stat => {
+                const name = capitalize(stat.stat.name.replace('special-', 'Sp. '));
+                const value = stat.base_stat;
+                return `
+                <tr>
+                    <td class="stat-label">${name}</td>
+                    <td><progress max="255" value="${value}"></progress> ${value}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        // Lade Pokedex Eintrag aus species data
+        async function getPokedexEntry(species) {
+            // Suche den English flavor_text
+            const entry = species.flavor_text_entries.find(e => e.language.name === 'en');
+            return entry ? entry.flavor_text.replace(/\n|\f/g, ' ') : "No Pokedex entry found.";
+        }
+
+        async function loadProfile(pokemonId) {
+            try {
+                const pokemon = await fetchJson(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
+                const species = await fetchJson(pokemon.species.url);
+
+                const weaknesses = createWeaknessBadges(pokemon.types);
+                const types = createTypeBadges(pokemon.types);
+                const statsTable = createStatsTable(pokemon.stats);
+                const pokedexEntry = await getPokedexEntry(species);
+
+                document.getElementById('profile-box').innerHTML = `
+                    <h1>${capitalize(pokemon.name)} (#${pokemon.id})</h1>
+                    <div class="profile-container">
+                        <img class="pokemon-img" src="${pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default}" alt="${pokemon.name}" />
+                        <h3>Types</h3>
+                        <div>${types}</div>
+
+                        <h3>Weaknesses</h3>
+                        <div>${weaknesses}</div>
+
+                        <h3>Base Stats</h3>
+                        <table>${statsTable}</table>
+
+                        <h3>Pokedex Entry</h3>
+                        <p>${pokedexEntry}</p>
+                    </div>
+                `;
+            } catch (err) {
+                document.getElementById('profile-box').textContent = "Failed to load Pokemon profile.";
+                console.error(err);
+            }
+        }
+
+        // Parse URL Parameter "id"
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        if (id) {
+            loadProfile(id);
+        } else {
+            document.getElementById('profile-box').textContent = "No Pokemon ID provided.";
+        }
+    </script>
+</body>
+</html>

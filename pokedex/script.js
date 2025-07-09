@@ -1,74 +1,122 @@
-document.addEventListener("DOMContentLoaded", function (event) {
-    loadMore();
+const genButtons = document.querySelectorAll('.gen-btn');
+const container = document.getElementById('evolution-chains-container');
+const loadMoreBtn = document.getElementById('load-more-btn');
 
-    document.getElementById("load-more").addEventListener("click", function () {
-        loadMore().catch(console.error);
-    });
+let currentGen = 1;
+let evoChainId = 1;
+const chainsPerLoad = 4;
 
-    fetchEvolutionChain(6).then(links => console.log(links));
+const genRanges = {
+  1: { min: 1, max: 151 },
+  2: { min: 152, max: 251 },
+  3: { min: 252, max: 386 },
+  4: { min: 387, max: 493 },
+  5: { min: 494, max: 649 },
+  6: { min: 650, max: 721 }
+};
+
+genButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    genButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentGen = parseInt(btn.dataset.gen);
+    evoChainId = 1;
+    container.innerHTML = '';
+    loadMoreBtn.style.display = 'block';
+    loadMoreBtn.disabled = false;
+    loadMoreChains();
+  });
 });
 
-async function fetchEvolutionChain(evolutionLineId) {
-    var evolutionChain = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${evolutionLineId}`).then(response => response.json());
+loadMoreBtn.addEventListener('click', loadMoreChains);
 
-    var chain = evolutionChain.chain;
-    var pokemonLinks = [chain.species.url];
+async function fetchEvolutionChain(id) {
+  const res = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${id}`);
+  if (!res.ok) throw new Error('Chain not found');
+  return res.json();
+}
 
-    while (chain.evolves_to.length > 0) {
-        chain = chain.evolves_to[0];
-        pokemonLinks.push(chain.species.url);
+function getSpeciesUrls(chain) {
+  let urls = [chain.species.url];
+  if (chain.evolves_to.length > 0) {
+    urls = urls.concat(getSpeciesUrls(chain.evolves_to[0]));
+  }
+  return urls;
+}
+
+function getSpeciesId(url) {
+  const parts = url.split('/').filter(Boolean);
+  return parseInt(parts[parts.length - 1]);
+}
+
+async function fetchPokemonData(speciesUrl) {
+  const species = await fetch(speciesUrl).then(r => r.json());
+  const pokeData = await fetch(species.varieties[0].pokemon.url).then(r => r.json());
+  return {
+    name: pokeData.name,
+    id: pokeData.id,
+    sprite: pokeData.sprites.front_default,
+    types: pokeData.types.map(t => t.type.name)
+  };
+}
+
+function createChainBox(pokemonList) {
+  const html = pokemonList.map(p => `
+    <div class="evo-pokemon" onclick="openProfile(${p.id})">
+      <img src="${p.sprite}" alt="${p.name}">
+      <div class="pokemon-name">${p.name}</div>
+      <div class="types-container">
+        ${p.types.map(type => `<span class="type-badge">${type}</span>`).join('')}
+      </div>
+    </div>
+  `).join('');
+  container.insertAdjacentHTML('beforeend', `<div class="evo-chain-box">${html}</div>`);
+}
+
+async function loadMoreChains() {
+  loadMoreBtn.disabled = true;
+  loadMoreBtn.textContent = 'Loading...';
+  const range = genRanges[currentGen];
+
+  let loaded = 0;
+  let attempts = 0;
+
+  while (loaded < chainsPerLoad && attempts < 100) {
+    attempts++;
+    try {
+      const data = await fetchEvolutionChain(evoChainId++);
+      const speciesUrls = getSpeciesUrls(data.chain);
+
+      const isValid = speciesUrls.every(url => {
+        const id = getSpeciesId(url);
+        return id >= range.min && id <= range.max;
+      });
+
+      if (!isValid) continue;
+
+      const pokemons = [];
+      for (const url of speciesUrls) {
+        const p = await fetchPokemonData(url);
+        pokemons.push(p);
+      }
+
+      createChainBox(pokemons);
+      loaded++;
+    } catch (e) {
+      break;
     }
+  }
 
-    return pokemonLinks;
+  loadMoreBtn.disabled = false;
+  loadMoreBtn.textContent = 'Load More Chains';
+
+  if (loaded === 0) loadMoreBtn.style.display = 'none';
 }
 
-async function resolvePokemon(speciesUrl) {
-    var species = await fetch(speciesUrl).then(response => response.json());
-    var pokemonUrl = species.varieties[0].pokemon.url;
-
-    var pokemon = await fetch(pokemonUrl).then(response => response.json());
-
-    return {
-        type: pokemon.types.map(t => t.type.name),
-        name: pokemon.name,
-        sprite: pokemon.sprites.front_default,
-    };
+function openProfile(id) {
+  window.open(`profile.html?id=${id}`, '_blank');
 }
 
-function getPokemon({name, type, sprite}) {
-    return  `<div class="pokemon">
-                    <div class="pokemon-sprite"><img class="fit-picture"
-                            src="${sprite}">
-                    </div>
-                    <div>
-                        <div class="pokemon-name">
-                            <h2><b>${name}</b></h2>
-                        </div>
-                        <ul class="pokemon-types">
-                            ${type.map(t => `<li>${t}</li>`).join("") /* Was macht die join funktion? */}
-                        </ul>
-                    </div>
-                </div>`;
-}
-
-var evolutionLineIndex = 1;
-async function loadMore() {
-    const container = document.getElementById("pokemons");
-    for (let i = 0; i < 4; i++) {
-        var evolutionLine = await fetchEvolutionChain(evolutionLineIndex++);
-        
-        var pokemonHtml = "";
-        for (let j = 0; j < evolutionLine.length; j++) {
-            var pokemon = await resolvePokemon(evolutionLine[j]);
-            pokemonHtml += getPokemon(pokemon);
-        }
-
-
-        var nextEvolutionLine = `
-           <div class="evolution-line">
-            ${pokemonHtml}
-            </div>
-            `;
-        container.innerHTML += nextEvolutionLine;
-    }
-}
+document.addEventListener('DOMContentLoaded', () => {
+  loadMoreChains();
+});
