@@ -63,6 +63,7 @@ async function fetchPokemonData(speciesUrl) {
 function createChainBox(pokemonList) {
   const html = pokemonList.map(p => `
     <div class="evo-pokemon" onclick="openProfile(${p.id})">
+      <button class="add-to-team" title="Add to team">+</button>
       <img src="${p.sprite}" alt="${p.name}">
       <div class="pokemon-name">${p.name}</div>
       <div class="types-container">

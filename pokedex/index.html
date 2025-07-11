@@ -1,8 +1,9 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pokedex – Evolution Chains</title>
   <style>
     body {
@@ -56,6 +57,28 @@
 
     .evo-pokemon {
       margin-bottom: 12px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .evo-pokemon:hover {
+      background: #c9eeff;
+    }
+
+    .add-to-team {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 30px;
+      font-size: 1em;
+      padding: .5em;
+      border-radius: 20px;
+      background-color: #7ecbfa;
+      display: none;
+    }
+
+    .evo-pokemon:hover .add-to-team {
+      display: block;
     }
 
     .evo-pokemon img {
@@ -98,18 +121,54 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    #headline {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #f0f4f8;
+      padding-bottom: 1em;
+    }
+
+    #my-team {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      gap: 5px;
+    }
+
+    #my-team .team-member {
+      width: 80px;
+      height: 80px;
+      background-color: gray;
+    }
   </style>
 </head>
-<body>
-  <h1>Pokedex – Evolution Chains</h1>
 
-  <div class="gen-buttons">
-    <button class="gen-btn active" data-gen="1">Gen 1</button>
-    <button class="gen-btn" data-gen="2">Gen 2</button>
-    <button class="gen-btn" data-gen="3">Gen 3</button>
-    <button class="gen-btn" data-gen="4">Gen 4</button>
-    <button class="gen-btn" data-gen="5">Gen 5</button>
-    <button class="gen-btn" data-gen="6">Gen 6</button>
+<body>
+  <div id="headline">
+    <h1>Pokedex – Evolution Chains</h1>
+
+    <div class="gen-buttons">
+      <button class="gen-btn active" data-gen="1">Gen 1</button>
+      <button class="gen-btn" data-gen="2">Gen 2</button>
+      <button class="gen-btn" data-gen="3">Gen 3</button>
+      <button class="gen-btn" data-gen="4">Gen 4</button>
+      <button class="gen-btn" data-gen="5">Gen 5</button>
+      <button class="gen-btn" data-gen="6">Gen 6</button>
+    </div>
+
+    <div id="my-team">
+      <div class="team-member"></div>
+      <div class="team-member"></div>
+      <div class="team-member"></div>
+      <div class="team-member"></div>
+      <div class="team-member"></div>
+      <div class="team-member"></div>
+    </div>
   </div>
 
   <div id="evolution-chains-container"></div>
@@ -117,4 +176,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
