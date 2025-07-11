@@ -80,13 +80,13 @@ async function loadMoreChains() {
 
   let loaded = 0;
   let attempts = 0;
+  const maxAttempts = 1000; 
 
-  while (loaded < chainsPerLoad && attempts < 100) {
+  while (loaded < chainsPerLoad && attempts < maxAttempts) {
     attempts++;
     try {
       const data = await fetchEvolutionChain(evoChainId++);
       const speciesUrls = getSpeciesUrls(data.chain);
-
       const isValid = speciesUrls.every(url => {
         const id = getSpeciesId(url);
         return id >= range.min && id <= range.max;
@@ -103,14 +103,16 @@ async function loadMoreChains() {
       createChainBox(pokemons);
       loaded++;
     } catch (e) {
-      break;
+      continue;
     }
   }
 
   loadMoreBtn.disabled = false;
   loadMoreBtn.textContent = 'Load More Chains';
 
-  if (loaded === 0) loadMoreBtn.style.display = 'none';
+  if (loaded === 0) {
+    loadMoreBtn.style.display = 'none';
+  }
 }
 
 function openProfile(id) {
